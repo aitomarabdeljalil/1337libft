@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:22:15 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/04 08:28:38 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/04 08:56:06 by aait-oma          #+#    #+#             */
+/*   Updated: 2021/11/04 11:59:14 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_atoi(const char *str)
+void    *ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int	res;
-	int	i;
-	int	ng;
-
-	i = 0;
-	res = 0;
-	ng = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			ng ++;
-		i++;
-	}
-	while (str[i] != '\0' && (str[i] >= '0' && str[i] <= '9'))
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			res = res * 10 + str[i] - '0';
-		i++;
-	}
-	if (ng == 1)
-		res *= -1;
-	return (res);
+    char    *pd;
+    const char  *ps;
+    size_t  i;
+    
+    pd = (char *)dst;
+    ps = (const char *)src;
+    i = 0;
+    if (pd != NULL && ps != NULL)
+    {
+        while (i < n)
+        {
+            pd[i] = ps[i];
+            i++;
+        }
+        
+    }
+    return (dst);
 }

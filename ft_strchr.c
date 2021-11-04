@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:14:06 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/01 15:35:22 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/04 11:08:42 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ char    *ft_strchr(const char *str, int c)
     while (*str != (char) c && *str != '\0')
         *str++;
     if (*str == (char) c)
-        return (str);
+        return ((char *)str);
     return (NULL);
 }
