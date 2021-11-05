@@ -6,24 +6,25 @@
 #    By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 15:43:41 by aait-oma          #+#    #+#              #
-#    Updated: 2021/11/04 18:02:12 by aait-oma         ###   ########.fr        #
+#    Updated: 2021/11/05 18:52:20 by aait-oma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-NAME = libft.a
-SOURCES = $(wildcard *.c)
-OBJECTS = $(patsubst %.c,%.o, $(SOURCES))
+INC = libft.h
+SRC = *.c
 
-$(OBJECTS): %.o: %.c libft.h
-	$(CC) -c $(CFLAGS) $< -o $@
-
-$(NAME): $(OBJECTS)
-	ar cr $(NAME) $(OBJECTS)
-
-.PHONY: all clean
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
+
+$(NAME): $(SRCS:.c=.o)
+	$(CC) $(CFLAGS) -c $(SRC) -I $(INC)
+	ar rc $(NAME) *.o
 clean:
 	rm -rf *.o
+fclean:
+	rm -rf *.o $(NAME)
+re: fclean all

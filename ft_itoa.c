@@ -6,64 +6,47 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 09:28:44 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/05 12:25:46 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/05 17:43:11 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void ft_swap(int *a, int *b)
+static void ft_swap(char *a, char *b)
 {
-	int	swapvar;
+	char	swapvar;
 
 	swapvar = *a;
 	*a = *b;
 	*b = swapvar;
 }
 
-static void ft_reverse(char str[], int length)
+static char*   ft_reverse(char *buffer, int i, int j)
 {
-    int start = 0;
-    int end = length -1;
-    while (start < end)
-    {
-        ft_swap(*(str+start), *(str+end));
-        start++;
-        end--;
-    }
+    while (i < j)
+        ft_swap(&buffer[i++], &buffer[j--]);
+    return buffer;
 }
 
 char    *ft_itoa(int n)
 {
     int i;
-    char *str;
-    int isneg;
-    int res;
-    
+    char    *buffer;
+
     i = 0;
-    isneg = 0;
-    if (n == 0)
+    while (n)
     {
-        if (!(str = malloc(2)))
-            return (NULL);
-        str[0] = '0';
-        str[1] = '\0';
-        return (str); 
-    }
-    else if (n < 0)
-    {
-        isneg = -1;
-        n = -n;
-    }
-    while (n != 0)
-    {
-        int rem = n % 10;
-        str[i++] = (rem > 9)? (rem-10) + 'a' : rem + '0';
+        int r = n % 10;
+        if (r >= 10)
+            buffer[i++] = 65 + (r - 10);
+        else
+            buffer[i++] = 48 + r;
         n = n / 10;
     }
-    if (isneg == -1)
-        str[i] == '-';
-    str[i] = '\0';
-    ft_reverse(str,i);
-    return(str);
+    if (i == 0)
+        buffer[i++] = '0';
+    if (n < 0)
+        buffer[i++] = '-';
+    buffer[i] = '\0';
+    return (ft_reverse(buffer, 0, i - 1));
 }
