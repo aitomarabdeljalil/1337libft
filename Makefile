@@ -1,30 +1,23 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/04 15:43:41 by aait-oma          #+#    #+#              #
-#    Updated: 2021/11/05 18:52:20 by aait-oma         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC		:= gcc
+CFLAGS	:= -Wall -Wextra -Werror
+NAME	:= libft.a
+SRCS	:= $(wildcard *.c)
+OBJS	:= $(patsubst %.c, %.o, $(SRCS))
 
-NAME = libft.a
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-INC = libft.h
-SRC = *.c
-
-OBJS = $(SRCS:.c=.o)
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(SRCS:.c=.o)
-	$(CC) $(CFLAGS) -c $(SRC) -I $(INC)
-	ar rc $(NAME) *.o
 clean:
-	rm -rf *.o
-fclean:
-	rm -rf *.o $(NAME)
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
 re: fclean all
+
+$(OBJS): %.o: %.c libft.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(NAME): $(OBJS)
+	ar cr $(NAME) $(OBJS)

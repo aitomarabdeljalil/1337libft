@@ -5,37 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 14:22:15 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/04 08:28:38 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/07 12:42:11 by aait-oma          #+#    #+#             */
+/*   Updated: 2021/11/07 12:42:16 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_atoi(const char *str)
+static int	ft_isspace(int c)
 {
-	int	res;
-	int	i;
-	int	ng;
+	return ((c >= 9 && c <= 13) || c == 32);
+}
 
-	i = 0;
-	res = 0;
-	ng = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+int	ft_atoi(const char *str)
+{
+	int	result;
+	int	sign;
+
+	result = 0;
+	sign = 1;
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '-')
 	{
-		if (str[i] == '-')
-			ng ++;
-		i++;
+		sign = -1;
+		str++;
 	}
-	while (str[i] != '\0' && (str[i] >= '0' && str[i] <= '9'))
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			res = res * 10 + str[i] - '0';
-		i++;
-	}
-	if (ng == 1)
-		res *= -1;
-	return (res);
+	if (*str == '+')
+		str++;
+	while (ft_isdigit(*str))
+		result = result * 10 + (*(str++) - 48) * sign;
+	return (result);
 }

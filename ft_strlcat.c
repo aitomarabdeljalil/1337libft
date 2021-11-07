@@ -5,29 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 10:38:27 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/03 14:38:31 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/05 12:45:27 by syakoubi          #+#    #+#             */
+/*   Updated: 2021/11/07 14:06:56 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t  ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-    size_t  dl;
-	size_t	sl;
-	size_t  i;
+	size_t	i;
+	size_t	j;
+	size_t	len_dst;
 
-	dl = ft_strlen(dst);
-	sl = ft_strlen((char *)src);
 	i = 0;
-	if (dstsize == 0 || dstsize <= dl)
-		return (sl + dstsize);
-	while (i < sl && i < dstsize - dl - 1)
-	{
-		dst[dl + i] = src[i];
+	while (dst[i] != '\0' && i < dstsize)
 		i++;
+	if (i == dstsize)
+		return (i + ft_strlen(src));
+	len_dst = i;
+	j = 0;
+	while (src[j] != '\0' && i < dstsize - 1)
+	{
+		dst[i] = src[j];
+		i++;
+		j++;
 	}
-	dst[dl + i] = '\0';
-	return (dl + sl);
+	dst[i] = '\0';
+	return (len_dst + ft_strlen(src));
 }

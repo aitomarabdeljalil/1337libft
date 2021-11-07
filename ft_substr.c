@@ -5,27 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:27:03 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/03 21:37:03 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/06 15:19:40 by syakoubi          #+#    #+#             */
+/*   Updated: 2021/11/07 14:08:20 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+static size_t	ft_strnlen(const char *s, size_t n)
 {
-    size_t  i;
-    char    *sub;
-    
-    i = 0;
-    sub = malloc(len +1);
-    if(sub == NULL)
-        return (NULL);
-    while (i < len)
-    {
-        sub[i] = s[start + i - 1];
-        i++;
-    }
-    sub[i] = '\0';
-    return (sub);
+	size_t	i;
+
+	i = 0;
+	while (i < n && s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+
+	start = ft_strnlen(s, start);
+	len = ft_strnlen(s + start, len);
+	sub = malloc(len + 1);
+	if (sub != NULL)
+		ft_strlcpy(sub, s + start, len + 1);
+	return (sub);
 }
