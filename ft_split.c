@@ -6,54 +6,40 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 09:24:06 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/08 17:40:33 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:38:58 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+// #include "libft.h"
 
-static void ft_func(int count, char const *s, char c, char **array)
-{
-	int	i;
-	int	j;
+// char	**ft_split(char const *s, char c)
+// {
+// 	int		i;
+// 	int		j;
+// 	int		k;
+// 	char	**array;
 
-	i = 0;
-	while (i < (count + 1))
-	{
-		j = 0;
-		while (s[j] != c)
-			j++;
-		j++;
-		*array = (char *) malloc(sizeof(char) * j);
-		ft_memcpy(*array, s, (j - 1));
-		(*array)[j - 1] = '\0';
-		s += j;
-		array++;
-		i++;
-	}
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int	length;
-	int	count;
-	int	i;
-	int	j;
-
-	length = 0;
-	count = 0;
-	i = 0;
-	j = 0;
-	while (*(s++))
-	{
-		if (*s == c)
-			count++;
-		length++;
-	}
-	s -= (length + 1);
-	char **array = (char **) malloc(sizeof(char *) * (length + 1));
-	char ** base = array;
-	ft_func(count, s, c, array);
-	*array = NULL;
-	return (base);
-}
+// 	i = 0;
+// 	j = 0;
+// 	while (s[i])
+// 	{
+// 		if (s[i] == c)
+// 			j++;
+// 		i++;
+// 	}
+// 	array = (char **) malloc(sizeof(char *) * (j + 1));
+// 	i = 0;
+// 	while (i < (j + 1))
+// 	{
+// 		k = 0;
+// 		while (s[j] != c)
+// 			k++;
+// 		k++;
+// 		*array = (char *) malloc(sizeof(char) * k);
+// 		ft_memcpy(*array, s, (k - 1));
+// 		array[k] = '\0';
+// 		s += k;
+// 		array++;
+// 		i++;
+// 	}	
+// }

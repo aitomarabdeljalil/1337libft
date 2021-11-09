@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 12:42:11 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/09 09:17:49 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/09 19:02:31 by aait-oma          #+#    #+#             */
+/*   Updated: 2021/11/09 19:44:57 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	return ((c >= 9 && c <= 13) || c == 32);
-}
+	t_list	*last;
 
-int	ft_atoi(const char *str)
-{
-	int	result;
-	int	sign;
-
-	result = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-' || *str == '+')
+	if (*lst)
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		last = ft_lstlast(*lst);
+		last->next = new;
 	}
-	while (ft_isdigit(*str))
-		result = result * 10 + (*(str++) - 48) * sign;
-	return (result);
+	else
+		*lst = new;
+	new->next = NULL;
 }
