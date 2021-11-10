@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 21:10:44 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/10 13:31:51 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/10 13:07:17 by aait-oma          #+#    #+#             */
+/*   Updated: 2021/11/10 13:37:52 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*c;
-
-	c = *lst;
-	while (c)
+	while (lst)
 	{
-		ft_lstdelone(c, del);
-		c = c->next;
+		f(lst->content);
+		lst = lst->next;
 	}
-	*lst = NULL;
 }

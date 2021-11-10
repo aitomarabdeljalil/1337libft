@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 21:10:44 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/10 13:31:51 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/10 14:14:51 by aait-oma          #+#    #+#             */
+/*   Updated: 2021/11/10 18:19:06 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*c;
+	t_list	*first;
+	t_list	*last;
+	t_list	*new;
 
-	c = *lst;
-	while (c)
+	first = NULL;
+	last = NULL;
+	if (f == NULL || del == NULL)
+		return (first);
+	while (lst)
 	{
-		ft_lstdelone(c, del);
-		c = c->next;
+		new = ft_lstnew(f(lst->content));
+		if (new == NULL)
+			break ;
+		if (first == NULL)
+			first = new;
+		else
+			last->next = new;
+		last = new;
+		lst = lst->next;
 	}
-	*lst = NULL;
+	if (lst != NULL)
+		ft_lstclear(&first, del);
+	return (first);
 }
