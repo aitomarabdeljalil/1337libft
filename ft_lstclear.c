@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:10:44 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/10 13:31:51 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/12 21:39:48 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*c;
+	t_list	*d;
 
-	c = *lst;
-	while (c)
+	while (*lst)
 	{
-		ft_lstdelone(c, del);
-		c = c->next;
+		d = *lst;
+		*lst = (*lst)->next;
+		ft_lstdelone(d, del);
 	}
-	*lst = NULL;
 }

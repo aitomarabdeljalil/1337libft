@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 15:29:42 by syakoubi          #+#    #+#             */
-/*   Updated: 2021/11/07 14:06:40 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/12 20:16:44 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len_s2;
 	char	*s;
 
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
 	s = malloc(len_s1 + len_s2 + 1);

@@ -25,4 +25,4 @@ bonus: $(OBJ) $(OBJ_BN)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	ar cr $(NAME) $(OBJS)
+	ar cr $(NAME) $(OBJ)
