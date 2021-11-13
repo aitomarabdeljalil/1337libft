@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:25:14 by syakoubi          #+#    #+#             */
-/*   Updated: 2021/11/10 19:19:50 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/12 22:02:24 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char		*_dst;
-	const unsigned char	*_src;
+	unsigned char		*pdst;
+	const unsigned char	*psrc;
 
-	_dst = dst;
-	_src = src;
+	pdst = dst;
+	psrc = src;
 	if (dst == NULL && src == NULL)
 		return (NULL);
 	while (n--)
-		*(_dst++) = *(_src++);
+		*(pdst++) = *(psrc++);
 	return (dst);
 }

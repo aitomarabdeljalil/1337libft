@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:39:19 by syakoubi          #+#    #+#             */
-/*   Updated: 2021/11/07 12:49:26 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/12 22:00:44 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const unsigned char	*_s;
+	const unsigned char	*ps;
 	size_t				i;
 
-	_s = s;
+	ps = s;
 	i = 0;
 	while (i < n)
 	{
-		if (_s[i] == (unsigned char)c)
+		if (ps[i] == (unsigned char)c)
 			return ((void *)(s + i));
 		i++;
 	}

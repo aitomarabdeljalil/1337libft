@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 15:19:40 by syakoubi          #+#    #+#             */
-/*   Updated: 2021/11/07 14:08:20 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/13 10:37:20 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 
+	if (s == NULL)
+		return (NULL);
 	start = ft_strnlen(s, start);
 	len = ft_strnlen(s + start, len);
 	sub = malloc(len + 1);

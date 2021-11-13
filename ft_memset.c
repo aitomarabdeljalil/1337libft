@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:21:01 by syakoubi          #+#    #+#             */
-/*   Updated: 2021/11/07 16:29:32 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/12 22:02:58 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char	*_b;
+	unsigned char	*pb;
 	size_t			i;
 
-	_b = b;
+	pb = b;
 	i = 0;
 	while (i < len)
-		_b[i++] = (unsigned char)c;
+		pb[i++] = (unsigned char)c;
 	return (b);
 }

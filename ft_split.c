@@ -5,104 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 09:24:06 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/12 19:58:45 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/09 10:52:22 by sayar             #+#    #+#             */
+/*   Updated: 2021/11/13 16:04:57 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_wordcount(const char *str, char c)
+static int	ft_cal_one(const char *s, char c)
 {
-	size_t	i;
-	size_t	count;
+	int	i;
 
 	i = 0;
-	count = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-	{
-		while (str[i] == c && str[i])
-			i++;
-		while (str[i] != c && str[i])
-			i++;
-		count++;
-	}
-	if (str[i - 1] == c)
-		count--;
-	return (count);
+	while (s[i] != c && s[i])
+		i++;
+	return (i);
 }
 
-static size_t	ft_wordlen(const char *str, char c)
+static int	ft_numwordes(const char *s, char c)
 {
-	size_t	len;
+	int	i;
+	int	cmp;
 
-	len = 0;
-	while (*str != c && *str)
+	i = 0;
+	cmp = 0;
+	while (s[i])
 	{
-		str++;
-		len++;
+		while (s[i] == c && s[i])
+			i++;
+		if (s[i] != c && s[i])
+			cmp++;
+		while (s[i] != c && s[i])
+			i++;
 	}
-	return (len);
+	return (cmp);
 }
 
-static char	**ft_clean(char **ptr, size_t count)
+static char	**ft_memclean(char **array, int size)
 {
-	size_t	i;
+	int	i;
 
-	if (ptr)
+	if (array)
 	{
 		i = 0;
-		while (i < count)
+		while (i < size)
 		{
-			if (ptr[i])
-				free(ptr[i]);
+			if (array[i])
+				free(array[i]);
 			i++;
 		}
-		free(ptr);
+		free(array);
 	}
 	return (NULL);
 }
 
-static char	**copyover(char **output, const char *s, char c)
+static char	**ft_fillup(const char *s, char c, char **array)
 {
-	size_t	j;
-	size_t	k;
+	int	i;
+	int	j;
 
-	j = 0;
+	i = 0;
 	while (*s)
 	{
 		while (*s == c && *s)
 			s++;
 		if (*s == '\0')
 			continue ;
-		output[j] = malloc(sizeof(char *) * ft_wordlen(s, c) + 1);
-		if (output[j] == NULL)
-			return (ft_clean(output, j));
-		k = 0;
+		array[i] = malloc(sizeof(char) * (ft_cal_one(s, c) + 1));
+		if (array[i] == NULL)
+			return (ft_memclean(array, i));
+		j = 0;
 		while (*s != c && *s)
 		{
-			output[j][k] = *s;
-			k++;
+			array[i][j] = *s;
+			j++;
 			s++;
 		}
-		output[j][k] = '\0';
-		j++;
+		array[i][j] = '\0';
+		i++;
 	}
-	output[j] = NULL;
-	return (output);
+	array[i] = NULL;
+	return (array);
 }
 
 char	**ft_split(const char *s, char c)
 {
-	char	**output;
+	char	**array;
 
-	if (s == NULL)
+	if (!s)
 		return (NULL);
-	output = malloc(sizeof(char *) * ft_wordcount(s, c) + 1);
-	if (output == NULL)
+	array = malloc(sizeof(char *) * (ft_numwordes(s, c) + 1));
+	if (array == NULL)
 		return (NULL);
-	copyover(output, s, c);
-	return (output);
+	ft_fillup(s, c, array);
+	return (array);
 }
