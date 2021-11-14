@@ -11,7 +11,7 @@ OBJ_BN 	:= $(patsubst %.c, %.o, $(SRC_BN))
 all: $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJ) $(OBJ_BN)
 
 fclean: clean
 	rm -f $(NAME)
