@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 13:07:17 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/10 13:37:52 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/20 15:55:51 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst)
+	while (lst && f)
 	{
 		f(lst->content);
 		lst = lst->next;

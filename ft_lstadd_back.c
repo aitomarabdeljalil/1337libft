@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 19:02:31 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/12 21:24:14 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/20 16:08:08 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	else
 		*lst = new;
-	new->next = NULL;
 }

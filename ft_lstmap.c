@@ -6,7 +6,7 @@
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:14:51 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/10 19:16:18 by aait-oma         ###   ########.fr       */
+/*   Updated: 2021/11/20 15:56:57 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	first = NULL;
 	last = NULL;
-	while (lst)
+	while (lst && f)
 	{
 		new = ft_lstnew(f(lst->content));
 		if (new == NULL)

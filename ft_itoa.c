@@ -5,12 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-oma <aait-oma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 09:28:44 by aait-oma          #+#    #+#             */
-/*   Updated: 2021/11/08 15:45:51 by aait-oma         ###   ########.fr       */
+/*   Created: 2021/11/22 12:48:59 by aait-oma          #+#    #+#             */
+/*   Updated: 2021/11/24 18:26:52 by aait-oma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+//count digit of a number
+static int	ft_count_digit(int n)
+{
+	int	count;
+
+	count = 0;
+	while (n)
+	{
+		n = n / 10;
+		count++;
+	}
+	return (count);
+}
 
 static void	ft_swap(char *a, char *b)
 {
@@ -48,7 +62,7 @@ static int	ft_mod(int x, int y)
 
 char	*ft_itoa(int n)
 {
-	char	str[12];
+	char	*str;
 	size_t	i;
 	bool	isneg;
 
@@ -56,7 +70,10 @@ char	*ft_itoa(int n)
 	isneg = false;
 	if (n < 0)
 		isneg = true;
-	ft_bzero(str, 12);
+	if (isneg)
+		str = malloc(sizeof(char) * (ft_count_digit(n) + 2));
+	else
+		str = malloc(sizeof(char) * (ft_count_digit(n) + 1));
 	if (n == 0)
 		str[i++] = '0';
 	while (n != 0)
@@ -68,5 +85,5 @@ char	*ft_itoa(int n)
 		str[i++] = '-';
 	ft_reverse(str, i);
 	str[i++] = '\0';
-	return (ft_strdup(str));
+	return (str);
 }
